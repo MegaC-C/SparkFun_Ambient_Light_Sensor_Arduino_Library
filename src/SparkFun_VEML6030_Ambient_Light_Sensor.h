@@ -172,7 +172,7 @@ class SparkFun_Ambient_Light1
     // REG0x02, bits[15:0]
     // This function sets the lower limit for the Ambient Light Sensor's interrupt. 
     // It takes a lux value as its paramater.
-    void setIntLowThresh(uint32_t luxVal);
+    void setIntLowThresh(uint32_t luxVal1);
     
     // REG0x02, bits[15:0]
     // This function reads the lower limit for the Ambient Light Sensor's interrupt. 
@@ -181,7 +181,7 @@ class SparkFun_Ambient_Light1
     // REG0x01, bits[15:0]
     // This function sets the upper limit for the Ambient Light Sensor's interrupt. 
     // It takes a lux value as its paramater.
-    void setIntHighThresh(uint32_t luxVal);
+    void setIntHighThresh(uint32_t luxVal1);
 
     // REG0x01, bits[15:0]
     // This function reads the upper limit for the Ambient Light Sensor's interrupt. 
@@ -191,7 +191,7 @@ class SparkFun_Ambient_Light1
     // This function gets the sensor's ambient light's lux value. The lux value is
     // determined based on current gain and integration time settings. If the lux
     // value exceeds 1000 then a compensation formula is applied to it. 
-    uint32_t readLight();
+    uint32_t readLight1();
 
     // REG[0x05], bits[15:0]
     // This function gets the sensor's ambient light's lux value. The lux value is
@@ -201,7 +201,7 @@ class SparkFun_Ambient_Light1
 
   private:
 
-    uint8_t _address;
+    uint8_t _address1;
     
     // This function compensates for lux values over 1000. From datasheet:
     // "Illumination values higher than 1000 lx show non-linearity. This
