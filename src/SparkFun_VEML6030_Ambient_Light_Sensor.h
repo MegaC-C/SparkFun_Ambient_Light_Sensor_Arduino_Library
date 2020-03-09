@@ -66,11 +66,11 @@ const float oneHIt[]       = {.0288, .0576, .2304, .4608};
 const float fiftyIt[]      = {.0576, .1152, .4608, .9216};
 const float twentyFiveIt[] = {.1152, .2304, .9216, 1.8432};
 
-class SparkFun_Ambient_Light
+class SparkFun_Ambient_Light1
 {  
   public:
 
-    SparkFun_Ambient_Light(uint8_t address); // I2C Constructor
+    SparkFun_Ambient_Light1(uint8_t address1); // I2C Constructor
 
     bool begin(TwoWire &wirePort = Wire); // begin function
 
@@ -207,7 +207,7 @@ class SparkFun_Ambient_Light
     // "Illumination values higher than 1000 lx show non-linearity. This
     // non-linearity is the same for all sensors, so a compensation forumla..."
     // etc. etc. 
-    uint32_t _luxCompensation(uint32_t _luxVal);
+    uint32_t _luxCompensation(uint32_t _luxVal1);
 
     // The lux value of the Ambient Light sensor depends on both the gain and the
     // integration time settings. This function determines which conversion value
@@ -221,7 +221,7 @@ class SparkFun_Ambient_Light
     // intergration time settings. As a result the lux value needs to be
     // calculated with the current settings and this function accomplishes
     // that.  
-    uint16_t _calculateBits(uint32_t _luxVal);
+    uint16_t _calculateBits(uint32_t _luxVal1);
 
     // This function writes to a 16 bit register. Paramaters include the register's address, a mask 
     // for bits that are ignored, the bits to write, and the bits' starting
