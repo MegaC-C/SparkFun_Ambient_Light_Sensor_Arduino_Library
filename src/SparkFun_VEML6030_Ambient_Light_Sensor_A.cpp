@@ -151,8 +151,8 @@ void SparkFun_Ambient_Light_A::powerOn(){
 // value exceeds 1000 then a compensation formula is applied to it. 
 uint32_t SparkFun_Ambient_Light_A::readLight_A(){
 
-  uint16_t lightBits =  _readRegister(AMBIENT_LIGHT_DATA_REG); 
-  uint32_t luxVal_A = _calculateLux(lightBits); 
+  uint16_t lightBits_A =  _readRegister(AMBIENT_LIGHT_DATA_REG); 
+  uint32_t luxVal_A = _calculateLux(lightBits_A); 
 
   if (luxVal_A > 1000) {
     uint32_t compLux = _luxCompensation(luxVal_A); 
@@ -184,7 +184,7 @@ uint32_t SparkFun_Ambient_Light_A::_luxCompensation(uint32_t _luxVal_A){
 // to use by using the bit representation of the gain as an index to look up
 // the conversion value in the correct integration time array. It then converts 
 // the value and returns it.  
-uint32_t SparkFun_Ambient_Light_A::_calculateLux(uint16_t _lightBits){
+uint32_t SparkFun_Ambient_Light_A::_calculateLux(uint16_t _lightBits_A){
 
   float _luxConv; 
   uint8_t _convPos;  
@@ -225,7 +225,7 @@ uint32_t SparkFun_Ambient_Light_A::_calculateLux(uint16_t _lightBits){
 
   // Multiply the value from the 16 bit register to the conversion value and return
   // it. 
-  uint32_t _calculatedLux = (_luxConv * _lightBits);
+  uint32_t _calculatedLux = (_luxConv * _lightBits_A);
   return _calculatedLux;
 
 }
@@ -409,8 +409,8 @@ void SparkFun_Ambient_Light_B::powerOn(){
 // value exceeds 1000 then a compensation formula is applied to it. 
 uint32_t SparkFun_Ambient_Light_B::readLight_B(){
 
-  uint16_t lightBits =  _readRegister(AMBIENT_LIGHT_DATA_REG); 
-  uint32_t luxVal_B = _calculateLux(lightBits); 
+  uint16_t lightBits_B =  _readRegister(AMBIENT_LIGHT_DATA_REG); 
+  uint32_t luxVal_B = _calculateLux(lightBits_B); 
 
   if (luxVal_B > 1000) {
     uint32_t compLux = _luxCompensation(luxVal_B); 
@@ -442,7 +442,7 @@ uint32_t SparkFun_Ambient_Light_B::_luxCompensation(uint32_t _luxVal_B){
 // to use by using the bit representation of the gain as an index to look up
 // the conversion value in the correct integration time array. It then converts 
 // the value and returns it.  
-uint32_t SparkFun_Ambient_Light_B::_calculateLux(uint16_t _lightBits){
+uint32_t SparkFun_Ambient_Light_B::_calculateLux(uint16_t _lightBits_B){
 
   float _luxConv; 
   uint8_t _convPos;  
@@ -483,7 +483,7 @@ uint32_t SparkFun_Ambient_Light_B::_calculateLux(uint16_t _lightBits){
 
   // Multiply the value from the 16 bit register to the conversion value and return
   // it. 
-  uint32_t _calculatedLux = (_luxConv * _lightBits);
+  uint32_t _calculatedLux = (_luxConv * _lightBits_B);
   return _calculatedLux;
 
 }
