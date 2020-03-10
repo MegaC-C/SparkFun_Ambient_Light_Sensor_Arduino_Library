@@ -100,34 +100,6 @@ class SparkFun_Ambient_Light_A
     // resolution but slower sensor refresh times. 
     uint16_t readIntegTime();
 
-    // REG0x00, bits[5:4]
-    // This function sets the persistence protect number i.e. the number of
-    // values needing to crosh the interrupt thresholds.
-    //void setProtect(uint8_t protVal);
-
-    // REG0x00, bits[5:4]
-    // This function reads the persistence protect number i.e. the number of 
-    // values needing to crosh the interrupt thresholds.
-    //uint8_t readProtect();
-
-    // REG0x00, bit[1]
-    // This function enables the Ambient Light Sensor's interrupt. 
-    //void enableInt();
-
-    // REG0x00, bit[1]
-    // This function disables the Ambient Light Sensor's interrupt. 
-    //void disableInt();
-
-    // REG0x00, bit[1]
-    // This function checks if the interrupt is enabled or disabled. 
-    //uint8_t readIntSetting();
-
-    // REG0x00, bit[0]
-    // This function powers down the Ambient Light Sensor. The light sensor will
-    // hold onto the last light reading which can be acessed while the sensor is 
-    // shut down. 0.5 micro Amps are consumed while shutdown. 
-    //void shutDown();
-
     // REG0x00, bit[0]
     // This function powers up the Ambient Light Sensor. The last value that was
     // read during shut down will be overwritten on the sensor's subsequent read.
@@ -135,69 +107,12 @@ class SparkFun_Ambient_Light_A
     // osciallator and signal processor to power up.   
     void powerOn();
 
-    // REG0x03, bit[0]
-    // This function enables the current power save mode value and puts the Ambient
-    // Light Sensor into power save mode. 
-    //void enablePowSave();
-
-    // REG0x03, bit[0]
-    // This function disables the current power save mode value and pulls the Ambient
-    // Light Sensor out of power save mode. 
-    //void disablePowSave();
-
-    // REG0x03, bit[0]
-    // This function checks to see if power save mode is enabled or disabled. 
-    //uint8_t readPowSavEnabled();
-
-    // REG0x03, bit[2:1]
-    // This function sets the power save mode value. It takes a value of 1-4. Each
-    // incrementally higher value descreases the sampling rate of the sensor and so
-    // increases power saving. The datasheet suggests enabling these modes when
-    // continually sampling the sensor. 
-    //void setPowSavMode(uint16_t modeVal);
-
-    // REG0x03, bit[2:1]
-    // This function reads the power save mode value. The function above takes a value of 1-4. Each
-    // incrementally higher value descreases the sampling rate of the sensor and so
-    // increases power saving. The datasheet suggests enabling these modes when
-    // continually sampling the sensor. 
-    //uint8_t readPowSavMode();
-
-    // REG0x06, bits[15:14]
-    // This function reads the interrupt register to see if an interrupt has been
-    // triggered. There are two possible interrupts: a lower limit and upper limit 
-    // threshold, both set by the user.  
-    //uint8_t readInterrupt();
-
-    // REG0x02, bits[15:0]
-    // This function sets the lower limit for the Ambient Light Sensor's interrupt. 
-    // It takes a lux value as its paramater.
-    //void setIntLowThresh(uint32_t luxVal_A);
-    
-    // REG0x02, bits[15:0]
-    // This function reads the lower limit for the Ambient Light Sensor's interrupt. 
-    //uint32_t readLowThresh();
-
-    // REG0x01, bits[15:0]
-    // This function sets the upper limit for the Ambient Light Sensor's interrupt. 
-    // It takes a lux value as its paramater.
-    //void setIntHighThresh(uint32_t luxVal_A);
-
-    // REG0x01, bits[15:0]
-    // This function reads the upper limit for the Ambient Light Sensor's interrupt. 
-    //uint32_t readHighThresh();
-
     // REG[0x04], bits[15:0]
     // This function gets the sensor's ambient light's lux value. The lux value is
     // determined based on current gain and integration time settings. If the lux
     // value exceeds 1000 then a compensation formula is applied to it. 
     uint32_t readLight_A();
 
-    // REG[0x05], bits[15:0]
-    // This function gets the sensor's ambient light's lux value. The lux value is
-    // determined based on current gain and integration time settings. If the lux
-    // value exceeds 1000 then a compensation formula is applied to it. 
-    //uint32_t readWhiteLight();
 
   private:
 
@@ -215,13 +130,6 @@ class SparkFun_Ambient_Light_A
     // the conversion value in the correct integration time array. It then converts 
     // the value and returns it.  
     uint32_t _calculateLux(uint16_t _lightBits);
-
-    // This function does the opposite calculation then the function above. The interrupt
-    // threshold values given by the user are dependent on the gain and
-    // intergration time settings. As a result the lux value needs to be
-    // calculated with the current settings and this function accomplishes
-    // that.  
-    //uint16_t _calculateBits(uint32_t _luxVal_A);
 
     // This function writes to a 16 bit register. Paramaters include the register's address, a mask 
     // for bits that are ignored, the bits to write, and the bits' starting
