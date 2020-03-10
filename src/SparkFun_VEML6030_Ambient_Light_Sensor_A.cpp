@@ -449,7 +449,7 @@ uint32_t SparkFun_Ambient_Light_A::_calculateLux(uint16_t _lightBits){
   if(_integTime == 800)
     _luxConv = eightHIt[_convPos]; 
   else if(_integTime == 400)
-    _luxConv = fourHIt[_convPos];luxVal_A
+    _luxConv = fourHIt[_convPos];
   else if(_integTime == 200)
     _luxConv = twoHIt[_convPos];
   else if(_integTime == 100)
