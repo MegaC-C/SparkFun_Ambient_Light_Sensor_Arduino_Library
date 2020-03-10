@@ -129,7 +129,7 @@ class SparkFun_Ambient_Light_A
     // to use by using the bit representation of the gain as an index to look up
     // the conversion value in the correct integration time array. It then converts 
     // the value and returns it.  
-    uint32_t _calculateLux(uint16_t _lightBits);
+    uint32_t _calculateLux(uint16_t _lightBits_A);
 
     // This function writes to a 16 bit register. Paramaters include the register's address, a mask 
     // for bits that are ignored, the bits to write, and the bits' starting
@@ -207,7 +207,7 @@ class SparkFun_Ambient_Light_B
     // to use by using the bit representation of the gain as an index to look up
     // the conversion value in the correct integration time array. It then converts 
     // the value and returns it.  
-    uint32_t _calculateLux(uint16_t _lightBits);
+    uint32_t _calculateLux(uint16_t _lightBits_B);
 
     // This function writes to a 16 bit register. Paramaters include the register's address, a mask 
     // for bits that are ignored, the bits to write, and the bits' starting
