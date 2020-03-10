@@ -77,6 +77,7 @@ float SparkFun_Ambient_Light_A::readGain(){
   
 }
 
+
 // REG0x00, bits[9:6]
 // This function sets the integration time (the saturation time of light on the
 // sensor) of the ambient light sensor. Higher integration time leads to better
@@ -132,8 +133,11 @@ uint16_t SparkFun_Ambient_Light_A::readIntegTime(){
 
 }
 
+
 // REG0x00, bits[5:4]
 // This function sets the persistence protect number. 
+
+/*
 void SparkFun_Ambient_Light_A::setProtect(uint8_t protVal){
 
   uint16_t bits; 
@@ -153,8 +157,13 @@ void SparkFun_Ambient_Light_A::setProtect(uint8_t protVal){
 
 }
 
+*/
+
 // REG0x00, bits[5:4]
 // This function reads the persistence protect number. 
+
+/*
+
 uint8_t SparkFun_Ambient_Light_A::readProtect(){
 
   uint16_t regVal = _readRegister(SETTING_REG); 
@@ -173,6 +182,8 @@ uint8_t SparkFun_Ambient_Light_A::readProtect(){
     return UNKNOWN_ERROR;
 
 }
+
+
 
 // REG0x00, bit[1]
 // This function enables the Ambient Light Sensor's interrupt. 
@@ -211,6 +222,8 @@ void SparkFun_Ambient_Light_A::shutDown(){
 
 }
 
+*/
+
 // REG0x00, bit[0]
 // This function powers up the Ambient Light Sensor. The last value that was
 // read during shut down will be overwritten on the sensor's subsequent read.
@@ -226,6 +239,9 @@ void SparkFun_Ambient_Light_A::powerOn(){
 // REG0x03, bit[0]
 // This function enables the current power save mode value and puts the Ambient
 // Light Sensor into power save mode. 
+
+/*
+
 void SparkFun_Ambient_Light_A::enablePowSave(){
     
   _writeRegister(POWER_SAVE_REG, POW_SAVE_EN_MASK, ENABLE, NO_SHIFT);  
@@ -366,6 +382,8 @@ uint32_t SparkFun_Ambient_Light_A::readHighThresh(){
 
 }
 
+*/
+
 // REG[0x04], bits[15:0]
 // This function gets the sensor's ambient light's lux value. The lux value is
 // determined based on current gain and integration time settings. If the lux
@@ -388,6 +406,9 @@ uint32_t SparkFun_Ambient_Light_A::readLight_A(){
 // This function gets the sensor's ambient light's lux value. The lux value is
 // determined based on current gain and integration time settings. If the lux
 // value exceeds 1000 then a compensation formula is applied to it. 
+
+/*
+
 uint32_t SparkFun_Ambient_Light_A::readWhiteLight(){
 
   uint16_t lightBits = _readRegister(WHITE_LIGHT_DATA_REG); 
@@ -401,6 +422,8 @@ uint32_t SparkFun_Ambient_Light_A::readWhiteLight(){
     return luxVal_A;
 
 }
+
+*/
 
 // This function compensates for lux values over 1000. From datasheet:
 // "Illumination values higher than 1000 lx show non-linearity. This
@@ -474,6 +497,9 @@ uint32_t SparkFun_Ambient_Light_A::_calculateLux(uint16_t _lightBits){
 // intergration time settings. As a result the lux value needs to be
 // calculated with the current settings and this function accomplishes
 // that.  
+
+/*
+
 uint16_t SparkFun_Ambient_Light_A::_calculateBits(uint32_t _luxVal_A){
 
   float _luxConv; 
@@ -518,6 +544,8 @@ uint16_t SparkFun_Ambient_Light_A::_calculateBits(uint32_t _luxVal_A){
   return _calculatedBits;
 
 }
+
+*/
 
 // This function writes to a 16 bit register. Paramaters include the register's address, a mask 
 // for bits that are ignored, the bits to write, and the bits' starting
