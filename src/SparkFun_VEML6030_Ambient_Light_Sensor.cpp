@@ -8,7 +8,7 @@
   Feel like supporting our work? Buy a board from SparkFun!
  */
 
-#include "SparkFun_VEML6030_Ambient_Light_Sensor.h"
+#include "SparkFun_VEML6030_Ambient_Light_Sensor1.h"
 
 SparkFun_Ambient_Light1::SparkFun_Ambient_Light1(uint8_t address1){  _address1 = address1; } //Constructor for I2C
 
