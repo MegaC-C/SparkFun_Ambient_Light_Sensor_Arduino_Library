@@ -66,11 +66,11 @@ const float oneHIt[]       = {.0288, .0576, .2304, .4608};
 const float fiftyIt[]      = {.0576, .1152, .4608, .9216};
 const float twentyFiveIt[] = {.1152, .2304, .9216, 1.8432};
 
-class SparkFun_Ambient_Light1
+class SparkFun_Ambient_Light_A
 {  
   public:
 
-    SparkFun_Ambient_Light1(uint8_t address1); // I2C Constructor
+    SparkFun_Ambient_Light_A(uint8_t address_A); // I2C Constructor
 
     bool begin(TwoWire &wirePort = Wire); // begin function
 
@@ -172,7 +172,7 @@ class SparkFun_Ambient_Light1
     // REG0x02, bits[15:0]
     // This function sets the lower limit for the Ambient Light Sensor's interrupt. 
     // It takes a lux value as its paramater.
-    void setIntLowThresh(uint32_t luxVal1);
+    void setIntLowThresh(uint32_t luxVal_A);
     
     // REG0x02, bits[15:0]
     // This function reads the lower limit for the Ambient Light Sensor's interrupt. 
@@ -181,7 +181,7 @@ class SparkFun_Ambient_Light1
     // REG0x01, bits[15:0]
     // This function sets the upper limit for the Ambient Light Sensor's interrupt. 
     // It takes a lux value as its paramater.
-    void setIntHighThresh(uint32_t luxVal1);
+    void setIntHighThresh(uint32_t luxVal_A);
 
     // REG0x01, bits[15:0]
     // This function reads the upper limit for the Ambient Light Sensor's interrupt. 
@@ -191,7 +191,7 @@ class SparkFun_Ambient_Light1
     // This function gets the sensor's ambient light's lux value. The lux value is
     // determined based on current gain and integration time settings. If the lux
     // value exceeds 1000 then a compensation formula is applied to it. 
-    uint32_t readLight1();
+    uint32_t readLight_A();
 
     // REG[0x05], bits[15:0]
     // This function gets the sensor's ambient light's lux value. The lux value is
@@ -201,13 +201,13 @@ class SparkFun_Ambient_Light1
 
   private:
 
-    uint8_t _address1;
+    uint8_t _address_A;
     
     // This function compensates for lux values over 1000. From datasheet:
     // "Illumination values higher than 1000 lx show non-linearity. This
     // non-linearity is the same for all sensors, so a compensation forumla..."
     // etc. etc. 
-    uint32_t _luxCompensation(uint32_t _luxVal1);
+    uint32_t _luxCompensation(uint32_t _luxVal_A);
 
     // The lux value of the Ambient Light sensor depends on both the gain and the
     // integration time settings. This function determines which conversion value
@@ -221,7 +221,7 @@ class SparkFun_Ambient_Light1
     // intergration time settings. As a result the lux value needs to be
     // calculated with the current settings and this function accomplishes
     // that.  
-    uint16_t _calculateBits(uint32_t _luxVal1);
+    uint16_t _calculateBits(uint32_t _luxVal_A);
 
     // This function writes to a 16 bit register. Paramaters include the register's address, a mask 
     // for bits that are ignored, the bits to write, and the bits' starting
