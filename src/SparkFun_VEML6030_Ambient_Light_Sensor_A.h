@@ -142,4 +142,84 @@ class SparkFun_Ambient_Light_A
 
     TwoWire *_i2cPort;
 };
+
+
+class SparkFun_Ambient_Light_B
+{  
+  public:
+
+    SparkFun_Ambient_Light_B(uint8_t address_B); // I2C Constructor
+
+    bool begin(TwoWire &wirePort = Wire); // begin function
+
+    // REG0x00, bits [12:11]
+    // This function sets the gain for the Ambient Light Sensor. Possible values
+    // are 1/8, 1/4, 1, and 2. The highest setting should only be used if the
+    // sensors is behind dark glass, where as the lowest setting should be used in
+    // dark rooms. The datasheet suggests always leaving it at around 1/4 or 1/8.
+    void setGain(float gainVal);
+
+    // REG0x00, bits [12:11]
+    // This function reads the gain for the Ambient Light Sensor. Possible values
+    // are 1/8, 1/4, 1, and 2. The highest setting should only be used if the
+    // sensors is behind dark glass, where as the lowest setting should be used in
+    // dark rooms. The datasheet suggests always leaving it at around 1/4 or 1/8.
+    float readGain();
+
+    // REG0x00, bits[9:6]
+    // This function sets the integration time (the saturation time of light on the
+    // sensor) of the ambient light sensor. Higher integration time leads to better
+    // resolution but slower sensor refresh times. 
+    void setIntegTime(uint16_t time);
+
+    // REG0x00, bits[9:6]
+    // This function reads the integration time (the saturation time of light on the
+    // sensor) of the ambient light sensor. Higher integration time leads to better
+    // resolution but slower sensor refresh times. 
+    uint16_t readIntegTime();
+
+    // REG0x00, bit[0]
+    // This function powers up the Ambient Light Sensor. The last value that was
+    // read during shut down will be overwritten on the sensor's subsequent read.
+    // After power up, a small 4ms delay is applied to give time for the internal
+    // osciallator and signal processor to power up.   
+    void powerOn();
+
+    // REG[0x04], bits[15:0]
+    // This function gets the sensor's ambient light's lux value. The lux value is
+    // determined based on current gain and integration time settings. If the lux
+    // value exceeds 1000 then a compensation formula is applied to it. 
+    uint32_t readLight_B();
+
+
+  private:
+
+    uint8_t _address_B;
+    
+    // This function compensates for lux values over 1000. From datasheet:
+    // "Illumination values higher than 1000 lx show non-linearity. This
+    // non-linearity is the same for all sensors, so a compensation forumla..."
+    // etc. etc. 
+    uint32_t _luxCompensation(uint32_t _luxVal_B);
+
+    // The lux value of the Ambient Light sensor depends on both the gain and the
+    // integration time settings. This function determines which conversion value
+    // to use by using the bit representation of the gain as an index to look up
+    // the conversion value in the correct integration time array. It then converts 
+    // the value and returns it.  
+    uint32_t _calculateLux(uint16_t _lightBits);
+
+    // This function writes to a 16 bit register. Paramaters include the register's address, a mask 
+    // for bits that are ignored, the bits to write, and the bits' starting
+    // position.
+    void _writeRegister(uint8_t _wReg, uint16_t _mask, uint16_t _bits, uint8_t _startPosition);
+
+    // This function reads a 16 bit register. It takes the register's
+    // address as its' parameter.
+    uint16_t _readRegister(uint8_t _reg);
+
+    TwoWire *_i2cPort;
+};
+
+
 #endif
